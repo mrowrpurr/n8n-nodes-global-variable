@@ -8,17 +8,23 @@ export const GLOBAL_VARIABLES_INFO = {
 export class GlobalVariablesCredentials implements ICredentialType {
 	name = GLOBAL_VARIABLES_INFO.credentialsName
 	// eslint-disable-next-line n8n-nodes-base/cred-class-field-display-name-missing-api
-	displayName = "Global Variables"
-	description = "Global variables defined as JSON"
+	displayName = "Global Variable"
+	description = "Global Variable defined as JSON"
 	icon: Icon = "fa:file-code"
 
 	properties: INodeProperties[] = [
 		{
-			displayName: "Define your variables",
+			type: "notice",
+			displayName: "To access variables in your workflows, use the Global Variable node",
+			name: "notice",
+			default: "",
+		},
+		{
+			displayName: "Define your variables in JSON below",
 			name: "variables",
 			type: "json",
 			default: "{}",
-			description: "Define your global variables as a JSON object",
+			description: "Define your Global Variable as a JSON object",
 			placeholder: '{\n  "myVariable": "value",\n  "count": 42,\n  "config": {\n    "enabled": true\n  }\n}',
 		},
 	]

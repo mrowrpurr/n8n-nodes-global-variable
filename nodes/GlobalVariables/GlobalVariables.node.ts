@@ -3,15 +3,15 @@ import { GLOBAL_VARIABLES_INFO, GlobalVariablesCredentialsData } from "../../cre
 
 export class GlobalVariables implements INodeType {
 	description: INodeTypeDescription = {
-		displayName: "Global Variables",
+		displayName: "Global Variable",
 		name: "globalVariables",
 		icon: "fa:file-code",
 		group: ["transform", "output"],
 		version: 1,
-		description: "Access global variables from JSON configuration",
+		description: "Access Global Variable from JSON configuration",
 		subtitle: '={{$parameter["putAllInOneKey"] ? "$" + $parameter["variablesKeyName"] : ""}}',
 		defaults: {
-			name: "Global Variables",
+			name: "Global Variable",
 		},
 		inputs: [NodeConnectionType.Main],
 		outputs: [NodeConnectionType.Main],

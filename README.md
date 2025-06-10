@@ -15,7 +15,7 @@
 
 # How it works
 
-## 1. Create a `Global Variables` credential
+## 1. Create a `Global Variable` credential
 
 > Note: you can have as many of these as you want to organize your variables.
 
@@ -43,7 +43,7 @@ Example:
 
 ![](/screenshots/json.png)
 
-## 3. Add a `Global Variables` node in your workflow
+## 3. Add a `Global Variable` node in your workflow
 
 > Choose the credential you created in step 1.
 
@@ -79,7 +79,7 @@ If you disable `Put All Variables in One Key` in the node options, each variable
 
 ## Does not overwrite existing variables
 
-If you have existing variables in your workflow, the `Global Variables` node will not overwrite them.
+If you have existing variables in your workflow, the `Global Variable` node will not overwrite them.
 
 It will only add the variables that are defined in the credential.
 
