@@ -1,4 +1,4 @@
-# Global Variables n8n Node
+# Global Variable n8n Node
 
 > Inspired by `n8n-nodes-globals`
 >
@@ -7,7 +7,7 @@
 
 ![](/screenshots/workflow-canvas.png)
 
-# Install `n8n-nodes-global-variables`
+# Install `n8n-nodes-global-variable`
 
 > Requires self-hosted n8n
 
@@ -21,35 +21,27 @@
 
 ![](/screenshots/search-credential.png)
 
-## 2. Add some variables with names and values
+## 2. Define your variables as JSON
 
-<!--
+Simply define all your variables in a single JSON field. You can include any type of data - strings, numbers, booleans, objects, arrays, etc.
 
-const BOOL_COUNT = 5
-const NUMBER_COUNT = 5
-const JSON_COUNT = 10
-const SECRET_COUNT = 10
-const STRING_COUNT = 20
-
--->
-
-> By default, each `Global Variables` credential has the following:
->
-> - `5` boolean variables
-> - `5` number variables
-> - `10` JSON variables
-> - `10` secret variables (_password fields so the value is hidden_)
-> - `20` string variables
->
-> ### Why don't we dynamically add these?
-> 
-> Because n8n does not support dynamic fields in credentials, e.g. the `fixedCollection` type.
-
-![](/screenshots/cropped-booleans.png)
+Example:
+```json
+{
+  "apiUrl": "https://api.example.com",
+  "retryCount": 3,
+  "enableLogging": true,
+  "config": {
+    "timeout": 5000,
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  },
+  "supportedFormats": ["json", "xml", "csv"]
+}
+```
 
 ![](/screenshots/json.png)
-
-![](/screenshots/text.png)
 
 ## 3. Add a `Global Variables` node in your workflow
 
@@ -65,7 +57,7 @@ const STRING_COUNT = 20
 
 ## That's it!
 
-Wherever the node is used, its variables will be available in the workflow after the node is executed in `$json`.
+Wherever the node is used, your variables will be available in the workflow after the node is executed in `$json`.
 
 ![](/screenshots/one-key-table.png)
 

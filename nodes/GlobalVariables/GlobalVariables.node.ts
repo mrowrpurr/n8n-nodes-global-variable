@@ -8,7 +8,7 @@ export class GlobalVariables implements INodeType {
 		icon: "fa:file-code",
 		group: ["transform", "output"],
 		version: 1,
-		description: "Access global variables from credentials",
+		description: "Access global variables from JSON configuration",
 		subtitle: '={{$parameter["putAllInOneKey"] ? "$" + $parameter["variablesKeyName"] : ""}}',
 		defaults: {
 			name: "Global Variables",
@@ -44,43 +44,20 @@ export class GlobalVariables implements INodeType {
 	}
 
 	async execute(this: IExecuteFunctions): Promise<INodeExecutionData[][]> {
-		this.helpers.httpRequest
-
 		const credentials = (await this.getCredentials(GLOBAL_VARIABLES_INFO.credentialsName)) as unknown as GlobalVariablesCredentialsData
 
-		const extractVariables = <T>(type: keyof typeof GLOBAL_VARIABLES_INFO.counts, parser: (value: string) => T): Record<string, T> => {
-			const count = GLOBAL_VARIABLES_INFO.counts[type]
-			const prefix = GLOBAL_VARIABLES_INFO.prefixes[type]
-			const vars: Record<string, T> = {}
+		let variables: Record<string, any> = {}
 
-			for (let i = 1; i <= count; i++) {
-				const nameKey = `${prefix}${i}Name` as keyof GlobalVariablesCredentialsData
-				const valueKey = `${prefix}${i}Value` as keyof GlobalVariablesCredentialsData
-
-				const name = credentials[nameKey]
-				const raw = credentials[valueKey]
-
-				if (name?.trim()) {
-					if (vars[name] !== undefined) {
-						throw new NodeOperationError(this.getNode(), `Duplicate variable name detected: ${name}`)
-					}
-					try {
-						vars[name] = parser(raw)
-					} catch (error) {
-						throw new NodeOperationError(this.getNode(), `Invalid ${type} in variable "${name}": ${error}`)
-					}
-				}
-			}
-
-			return vars
+		try {
+			// Parse the JSON variables from the credential
+			variables = JSON.parse(credentials.variables || "{}")
+		} catch (error) {
+			throw new NodeOperationError(this.getNode(), `Invalid JSON in variables field: ${error}`)
 		}
 
-		const extracted = {
-			...extractVariables("boolean", (v) => Boolean(v)),
-			...extractVariables("number", (v) => Number(v)),
-			...extractVariables("json", (v) => JSON.parse(v || "{}")),
-			...extractVariables("string", (v) => v),
-			...extractVariables("secret", (v) => v),
+		// Validate that variables is an object
+		if (typeof variables !== "object" || variables === null || Array.isArray(variables)) {
+			throw new NodeOperationError(this.getNode(), "Variables must be defined as a JSON object")
 		}
 
 		const putAllInOneKey = this.getNodeParameter("putAllInOneKey", 0) as boolean
@@ -90,10 +67,10 @@ export class GlobalVariables implements INodeType {
 		if (putAllInOneKey) {
 			const variablesKeyName = this.getNodeParameter("variablesKeyName", 0) as string
 			variablesData = {
-				[variablesKeyName]: extracted,
+				[variablesKeyName]: variables,
 			}
 		} else {
-			variablesData = extracted
+			variablesData = variables
 		}
 
 		// For each input, add the variables data
@@ -103,7 +80,7 @@ export class GlobalVariables implements INodeType {
 			returnData.push({ json: variablesData })
 		} else {
 			// Add the variables data to each item
-			returnData.forEach((item) => {
+			returnData.forEach((item: INodeExecutionData) => {
 				item.json = {
 					...item.json,
 					...variablesData,
