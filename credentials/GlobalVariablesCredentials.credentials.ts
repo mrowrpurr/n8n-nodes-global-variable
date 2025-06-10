@@ -25,7 +25,7 @@ export class GlobalVariablesCredentials implements ICredentialType {
 			type: "json",
 			default: "{}",
 			description: "Define your Global Variable as a JSON object",
-			placeholder: '{\n  "myVariable": "value",\n  "count": 42,\n  "config": {\n    "enabled": true\n  }\n}',
+			placeholder: '{\n  "helloWorld": "This is a variable you can access in your workflows!",\n  "count": 42,\n  "config": {\n    "enabled": true\n  }\n}',
 		},
 	]
 }
