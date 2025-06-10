@@ -1,10 +1,10 @@
 import { IExecuteFunctions, INodeExecutionData, INodeType, INodeTypeDescription, NodeConnectionType, NodeOperationError } from "n8n-workflow"
-import { GLOBAL_VARIABLES_INFO, GlobalVariablesCredentialsData } from "../../credentials/GlobalVariablesCredentials.credentials"
+import { GLOBAL_VARIABLE_INFO, GlobalVariableCredentialsData } from "../../credentials/GlobalVariableCredentials.credentials"
 
-export class GlobalVariables implements INodeType {
+export class GlobalVariable implements INodeType {
 	description: INodeTypeDescription = {
 		displayName: "Global Variable",
-		name: "globalVariables",
+		name: "globalVariable",
 		icon: "fa:file-code",
 		group: ["transform", "output"],
 		version: 1,
@@ -17,7 +17,7 @@ export class GlobalVariables implements INodeType {
 		outputs: [NodeConnectionType.Main],
 		credentials: [
 			{
-				name: GLOBAL_VARIABLES_INFO.credentialsName,
+				name: GLOBAL_VARIABLE_INFO.credentialsName,
 				required: true,
 			},
 		],
@@ -44,7 +44,7 @@ export class GlobalVariables implements INodeType {
 	}
 
 	async execute(this: IExecuteFunctions): Promise<INodeExecutionData[][]> {
-		const credentials = (await this.getCredentials(GLOBAL_VARIABLES_INFO.credentialsName)) as unknown as GlobalVariablesCredentialsData
+		const credentials = (await this.getCredentials(GLOBAL_VARIABLE_INFO.credentialsName)) as unknown as GlobalVariableCredentialsData
 
 		let variables: Record<string, any> = {}
 

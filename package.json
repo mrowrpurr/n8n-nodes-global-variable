@@ -33,10 +33,10 @@
 	"n8n": {
 		"n8nNodesApiVersion": 1,
 		"credentials": [
-			"dist/credentials/GlobalVariablesCredentials.credentials.js"
+			"dist/credentials/GlobalVariableCredentials.credentials.js"
 		],
 		"nodes": [
-			"dist/nodes/GlobalVariables/GlobalVariables.node.js"
+			"dist/nodes/GlobalVariable/GlobalVariable.node.js"
 		]
 	},
 	"devDependencies": {

@@ -1,8 +1,9 @@
 # Global Variable n8n Node
 
-> Inspired by `n8n-nodes-globals`
+> Inspired by `n8n-nodes-globals` and `n8n-nodes-global-variables`
 >
-> https://github.com/umanamente/n8n-nodes-globals
+> https://github.com/umanamente/n8n-nodes-globals  
+> https://github.com/mrowrpurr/n8n-nodes-global-variables
 
 
 ![](/screenshots/workflow-canvas.png)

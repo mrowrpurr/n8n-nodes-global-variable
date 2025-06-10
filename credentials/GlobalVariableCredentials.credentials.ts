@@ -1,12 +1,12 @@
 import { Icon, ICredentialType, INodeProperties } from "n8n-workflow"
 
-export const GLOBAL_VARIABLES_INFO = {
-	credentialsName: "globalVariablesApi",
+export const GLOBAL_VARIABLE_INFO = {
+	credentialsName: "globalVariableApi",
 }
 
 // eslint-disable-next-line n8n-nodes-base/cred-class-name-unsuffixed
-export class GlobalVariablesCredentials implements ICredentialType {
-	name = GLOBAL_VARIABLES_INFO.credentialsName
+export class GlobalVariableCredentials implements ICredentialType {
+	name = GLOBAL_VARIABLE_INFO.credentialsName
 	// eslint-disable-next-line n8n-nodes-base/cred-class-field-display-name-missing-api
 	displayName = "Global Variable"
 	description = "Global Variable defined as JSON"
@@ -30,6 +30,6 @@ export class GlobalVariablesCredentials implements ICredentialType {
 	]
 }
 
-export interface GlobalVariablesCredentialsData {
+export interface GlobalVariableCredentialsData {
 	variables: string
 }
