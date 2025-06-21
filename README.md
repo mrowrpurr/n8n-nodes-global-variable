@@ -4,7 +4,7 @@
 
 > Requires self-hosted n8n
 
-<img src="screenshots/install.png" alt="Install n8n-nodes-global-variable" width="400">
+<img src="screenshots/install.png" alt="Install n8n-nodes-global-variable" width="650">
 
 # How it works
 
@@ -12,11 +12,11 @@
 
 > Note: you can have as many of these as you want to organize your variables.
 
-<img src="screenshots/choose-credential-type.png" alt="Search for Global Variable credential" width="400">
+<img src="screenshots/choose-credential-type.png" alt="Search for Global Variable credential" width="650">
 
 > If you add a `Global Variable` node to your workflow first, you'll get an opportunity to easily create a credential:
 >
-> <img src="screenshots/node-showing-create-new-credential.png" alt="Add Global Variable credential" width="400">
+> <img src="screenshots/node-showing-create-new-credential.png" alt="Add Global Variable credential" width="650">
 
 ## 2. Define your variables as JSON
 
@@ -39,21 +39,21 @@ Simply define all your variables in a single JSON field. You can include any typ
 }
 ```
 
-<img src="screenshots/define-variables-in-credential.png" alt="Define variables as JSON" width="400">
+<img src="screenshots/define-variables-in-credential.png" alt="Define variables as JSON" width="650">
 
 ## 3. Add a `Global Variable` node in your workflow
 
 > Choose the credential you created in step 1.
 
-<img src="screenshots/choose-node-type.png" alt="Search for Global Variable node" width="400">
+<img src="screenshots/choose-node-type.png" alt="Search for Global Variable node" width="650">
 
-<img src="screenshots/node-with-my-variables-selected.png" alt="Global Variable node in workflow canvas" width="400">
+<img src="screenshots/node-with-my-variables-selected.png" alt="Global Variable node in workflow canvas" width="650">
 
 ## That's it!
 
 Wherever the node is used, your variables will be available in the workflow after the node is executed in `$json`.
 
-<img src="screenshots/showing-output-of-running-node.png" alt="Variables in one key - table view" width="400">
+<img src="screenshots/showing-output-of-running-node.png" alt="Variables in one key - table view" width="650">
 
 ### `$json.vars.X`
 
